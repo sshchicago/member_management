@@ -57,11 +57,22 @@ class SilkStartMember(Member):
 
     @property
     def expiry_date(self):
+        """Date account is scheduled to expire"""
         return self._expiry_date
 
     @expiry_date.setter
     def expiry_date(self, value):
         self._expiry_date = value
+
+    @property
+    def date_joined(self):
+        """Date joined defined in SIlkstart"""
+        return self._date_joined
+
+    @date_joined.setter
+    def date_joined(self, value):
+        self._date_joined = value
+
 
 
 
