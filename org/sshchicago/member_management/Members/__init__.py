@@ -66,12 +66,39 @@ class SilkStartMember(Member):
 
     @property
     def date_joined(self):
-        """Date joined defined in SIlkstart"""
+        """Date joined defined in Silkstart"""
         return self._date_joined
 
     @date_joined.setter
     def date_joined(self, value):
         self._date_joined = value
+
+    @property
+    def plan(self):
+        """Membership plan defined in SilkStart"""
+        return self.plan
+
+    @plan.setter
+    def plan(self, value):
+        self._plan = value
+
+    @property
+    def last_login(self):
+        """Last login in SilkStart"""
+        return self._last_login
+
+    @last_login.setter
+    def last_login(self, value):
+        self._last_login = value
+
+    @property
+    def member_type(self):
+        """Member type (often None)"""
+        return self._member_type
+
+    @member_type.setter
+    def member_type(self, value):
+        self._member_type = value
 
 
 
