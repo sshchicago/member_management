@@ -46,11 +46,23 @@ class Member(object):
     def active(self, value):
         self._active = bool(value)
 
+    def __eq__(self, other):
+        """
+        Determines equivelancy based on email address.
+        """
+
+        for address in other.email:
+            if address in self.email:
+                return True
+        return False
+
 class SilkStartMember(Member):
     """
     A SilkStart member
     """
     def __init__(self):
+
+        Member.__init__(self)
         self._expiry_date = None
         self._date_joined = None
         self._plan = None
@@ -115,6 +127,7 @@ class IpaMember(Member):
     # The majority of this information is for future expansion, most of it is unused.
 
     def __init__(self):
+        Member.__init__(self)
         self._equipment_cert_url = None
         self._mozilla_open_badge_url = None
         self._rfid_badge_id = None
