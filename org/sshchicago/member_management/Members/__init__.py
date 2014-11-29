@@ -1,4 +1,4 @@
-__author__ = 'chris'
+__author__ = 'Christopher Swingler <chris@chrissiwngler.com>'
 
 class Member(object):
 
@@ -28,12 +28,15 @@ class Member(object):
 
     @property
     def email(self):
-        """Email address"""
+        """Email addresses"""
         return self._email
 
     @email.setter
     def email(self, value):
-        self._email = value
+        if self._email is None:
+            self._email = [value]
+        else:
+            self._email.append(value)
 
     @property
     def active(self):
@@ -107,6 +110,10 @@ class IpaMember(Member):
     """
     A member from our FreeIPA server
     """
+    # All of this stuff is defined in
+    # https://github.com/sshchicago/LDAP-conf/blob/master/LDIFs/sshChicagoPersonClass.ldif
+    # The majority of this information is for future expansion, most of it is unused.
+
     def __init__(self):
         self._equipment_cert_url = None
         self._mozilla_open_badge_url = None
@@ -116,5 +123,67 @@ class IpaMember(Member):
         self._member_termination_date = None
         self._is_federated_with_other_hackerspaces = None
         self._federated_hackerspaces = None
+
+    @property
+    def equipment_cert_url(self):
+        """Certification URL for future use."""
+        return self._equipment_cert_url
+
+    @equipment_cert_url.setter
+    def equipment_cert_url(self, value):
+        self._equipment_cert_url = value
+
+    @property
+    def mozilla_open_badge_url(self):
+        """
+        The URL to a member's Mozilla Open Badge (http://openbadges.org)
+        """
+        self._mozilla_open_badge_url
+
+    @mozilla_open_badge_url.setter
+    def mozilla_open_badge_url(self,value):
+        self._mozilla_open_badge_url = value
+
+    @property
+    def rfid_badge_id(self):
+        """RFID Badge number"""
+        return self._rfid_badge_id
+
+    @rfid_badge_id.setter
+    def rfid_badge_id(self, value):
+        self._rfid_badge_id = value
+
+    @property
+    def metal_key_number(self):
+        return self._metal_key_number
+
+    @property
+    def member_join_date(self):
+        """Member activation date"""
+        return self._member_join_date
+
+    @member_join_date.setter
+    def member_join_date(self, value):
+        self._member_join_date = value
+
+    @property
+    def is_federated_with_other_hackerspaces(self):
+        """Boolean, is/is not a federated member"""
+        return self._is_federated_with_other_hackerspaces
+
+    @is_federated_with_other_hackerspaces.setter
+    def is_federated_with_other_hackerspaces(self, value):
+        self._is_federated_with_other_hackerspaces = bool(value)
+
+    @property
+    def federated_hackerspaces(self):
+        return self.federated_hackerspaces
+
+    @federated_hackerspaces.setter
+    def federated_hackerspaces(self, value):
+        self.federated_hackerspaces = value
+
+
+
 
 
